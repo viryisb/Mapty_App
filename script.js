@@ -65,7 +65,7 @@ class Cycling extends Workout {
 
 /* const run1 = new Running([39, -12], 5.2, 24, 178);
 const cycling1 = new Cycling([39, -12], 27, 95, 523);
-console.log(run1, cycling1);
+
  */
 //APPLICATION ARCHITECTURE
 class App {
@@ -97,9 +97,6 @@ class App {
   _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    console.log(
-      `https://www.google.com/maps/@-${latitude},-${longitude},16z?hl=es`
-    );
 
     const coords = [latitude, longitude];
 
@@ -187,7 +184,6 @@ class App {
     // Add new object to workout array
     this.#workouts.push(workout);
 
-    console.log(workout);
     //render workout on map as marker
 
     this._renderWorkoutMarker(workout);
@@ -272,14 +268,12 @@ class App {
 
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
-    console.log(workoutEl);
 
     if (!workoutEl) return;
 
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
-    console.log(workout);
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
@@ -289,7 +283,7 @@ class App {
     });
 
     //using public interface
-    workout.click();
+    // workout.click();
   }
 
   _setLocalStorage() {
@@ -298,7 +292,7 @@ class App {
 
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
-    console.log('data', data);
+
     if (!data) return;
 
     this.#workouts = data;
